@@ -1,0 +1,28 @@
+SELECT query1.CategoryId ,count(*) as [NoOfProducts] FROM
+(
+SELECT TOP 3 c.CategoryId, avg(p.Price) as Price
+FROM     
+	dbo.Product p
+	INNER JOIN Product_Category pc ON p.ProductId = pc.ProductId
+	INNER JOIN Category c ON pc.CategoryId = c.CategoryId
+WHERE 
+	p.IsAvailable = 1
+GROUP BY c.CategoryId
+ORDER BY Price desc) query1
+INNER JOIN Product_Category pc ON query1.CategoryId = pc.CategoryId
+group by query1.CategoryId
+
+
+--na to podejscie braklo czasu
+/*
+WITH Products AS
+(
+SELECT  c.CategoryId, c.Code, c.Description, p.Price
+        ,ROW_NUMBER() OVER (PARTITION BY c.CategoryId ORDER BY Price DESC) ROW_NUM
+FROM dbo.Product p
+	INNER JOIN Product_Category pc ON p.ProductId = pc.ProductId
+	INNER JOIN Category c ON pc.CategoryId = c.CategoryId
+)
+SELECT *
+FROM Products
+*/

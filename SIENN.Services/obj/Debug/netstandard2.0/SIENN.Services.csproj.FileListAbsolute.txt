@@ -1,0 +1,11 @@
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\bin\Debug\netstandard2.0\SIENN.Services.deps.json
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\bin\Debug\netstandard2.0\SIENN.Services.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\bin\Debug\netstandard2.0\SIENN.Services.pdb
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.csprojResolveAssemblyReference.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.csproj.CoreCompileInputs.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.AssemblyInfoInputs.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.AssemblyInfo.cs
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\obj\Debug\netstandard2.0\SIENN.Services.pdb
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\bin\Debug\netstandard2.0\SIENN.DbAccess.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.Services\bin\Debug\netstandard2.0\SIENN.DbAccess.pdb

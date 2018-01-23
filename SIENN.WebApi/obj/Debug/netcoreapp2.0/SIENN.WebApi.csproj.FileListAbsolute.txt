@@ -1,0 +1,15 @@
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.WebApi.deps.json
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.WebApi.runtimeconfig.json
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.WebApi.runtimeconfig.dev.json
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.WebApi.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.WebApi.pdb
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.csprojResolveAssemblyReference.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.AssemblyInfoInputs.cache
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.AssemblyInfo.cs
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\obj\Debug\netcoreapp2.0\SIENN.WebApi.pdb
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.DbAccess.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.DbAccess.pdb
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.Services.dll
+C:\Users\USER\Source\Repos\Core2Recruitment\SIENN.WebApi\bin\Debug\netcoreapp2.0\SIENN.Services.pdb

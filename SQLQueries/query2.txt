@@ -1,0 +1,11 @@
+SELECT
+	p.ProductId
+	,p.Code
+FROM
+	dbo.Product p
+	INNER JOIN Product_Category pc ON p.ProductId = pc.ProductId
+	INNER JOIN Category c ON pc.CategoryId = c.CategoryId
+WHERE
+	p.IsAvailable = 1 
+GROUP BY p.ProductId, p.Code
+HAVING count(c.CategoryId) > 1

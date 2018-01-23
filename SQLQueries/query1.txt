@@ -1,0 +1,7 @@
+SELECT
+	p.*
+FROM	
+	dbo.Product p
+WHERE
+	p.IsAvailable = 1
+	AND DATEPART(MM, p.DeliveryDate) = DATEPART(MM, GETDATE())
