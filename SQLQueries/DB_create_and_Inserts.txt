@@ -1,0 +1,293 @@
+USE [master]
+GO
+/****** Object:  Database [SIENN]    Script Date: 2018-01-23 21:46:47 ******/
+CREATE DATABASE [SIENN]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'SIENN', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\SIENN.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'SIENN_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\SIENN_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [SIENN] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [SIENN].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [SIENN] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [SIENN] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [SIENN] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [SIENN] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [SIENN] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [SIENN] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [SIENN] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [SIENN] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [SIENN] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [SIENN] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [SIENN] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [SIENN] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [SIENN] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [SIENN] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [SIENN] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [SIENN] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [SIENN] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [SIENN] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [SIENN] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [SIENN] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [SIENN] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [SIENN] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [SIENN] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [SIENN] SET  MULTI_USER 
+GO
+ALTER DATABASE [SIENN] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [SIENN] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [SIENN] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [SIENN] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [SIENN] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [SIENN] SET QUERY_STORE = OFF
+GO
+USE [SIENN]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET IDENTITY_CACHE = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [SIENN]
+GO
+/****** Object:  Table [dbo].[Category]    Script Date: 2018-01-23 21:46:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[Description] [nvarchar](1024) NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product]    Script Date: 2018-01-23 21:46:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product](
+	[ProductId] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[Description] [nvarchar](1024) NOT NULL,
+	[ProductTypeId] [int] NOT NULL,
+	[IsAvailable] [bit] NOT NULL,
+	[Price] [money] NOT NULL,
+	[DeliveryDate] [datetime] NOT NULL,
+	[UnitId] [int] NOT NULL,
+ CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
+(
+	[ProductId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Product_Category]    Script Date: 2018-01-23 21:46:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Product_Category](
+	[ProductId] [int] NOT NULL,
+	[CategoryId] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_Product_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ProductType]    Script Date: 2018-01-23 21:46:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProductType](
+	[ProductTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[Description] [nvarchar](1024) NOT NULL,
+ CONSTRAINT [PK_ProductType] PRIMARY KEY CLUSTERED 
+(
+	[ProductTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Unit]    Script Date: 2018-01-23 21:46:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Unit](
+	[UnitId] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](32) NOT NULL,
+	[Description] [nvarchar](1024) NOT NULL,
+ CONSTRAINT [PK_Unit] PRIMARY KEY CLUSTERED 
+(
+	[UnitId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Category] ON 
+GO
+INSERT [dbo].[Category] ([CategoryId], [Code], [Description]) VALUES (1, N'Category1', N'Desc for Category1')
+GO
+INSERT [dbo].[Category] ([CategoryId], [Code], [Description]) VALUES (3, N'Cat2', N'Desc for Cat2')
+GO
+INSERT [dbo].[Category] ([CategoryId], [Code], [Description]) VALUES (4, N'Cat3', N'Desc for Cat3')
+GO
+INSERT [dbo].[Category] ([CategoryId], [Code], [Description]) VALUES (5, N'Cat4', N'Desc for Cat4')
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Product] ON 
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (2, N'PROD_CODE1', N'Updated', 1, 1, 2.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (6, N'PROD_CODE1', N'ToDelete', 1, 0, 33.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (8, N'PROD_CODE1', N'Updated', 1, 1, 2.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (9, N'PROD_CODE1', N'ToDelete', 1, 0, 33.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (10, N'PROD_CODE2', N'Updated', 1, 1, 112.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (11, N'PROD_CODE3', N'ToDelete', 1, 1, 44.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 2)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (12, N'PROD_CODE4', N'Updated', 1, 1, 1212.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (13, N'PROD_CODE5', N'ToDelete', 1, 1, 4.0000, CAST(N'2018-02-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (14, N'PROD_CODE6', N'Updated', 1, 1, 11.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (15, N'PROD_CODE7', N'ToDelete', 1, 1, 44.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (16, N'PROD_CODE8', N'Updated', 1, 1, 112.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (17, N'PROD_CODE9', N'ToDelete', 1, 1, 424.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (18, N'PROD_CODE10', N'Updated', 1, 1, 1162.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (19, N'PROD_CODE11', N'ToDelete', 1, 1, 544.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (20, N'PROD_CODE12', N'Updated', 1, 1, 11892.0000, CAST(N'2018-01-21T16:29:57.160' AS DateTime), 1)
+GO
+INSERT [dbo].[Product] ([ProductId], [Code], [Description], [ProductTypeId], [IsAvailable], [Price], [DeliveryDate], [UnitId]) VALUES (21, N'PROD_CODE13', N'ToDelete', 1, 1, 4784.0000, CAST(N'2018-01-22T00:00:00.000' AS DateTime), 1)
+GO
+SET IDENTITY_INSERT [dbo].[Product] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Product_Category] ON 
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (2, 1, 1)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (6, 1, 2)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (2, 3, 3)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (2, 4, 4)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (6, 3, 5)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (8, 1, 6)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (8, 3, 7)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (9, 1, 8)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (10, 1, 9)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (10, 3, 10)
+GO
+INSERT [dbo].[Product_Category] ([ProductId], [CategoryId], [Id]) VALUES (10, 5, 11)
+GO
+SET IDENTITY_INSERT [dbo].[Product_Category] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ProductType] ON 
+GO
+INSERT [dbo].[ProductType] ([ProductTypeId], [Code], [Description]) VALUES (1, N'PROD1', N'Product1')
+GO
+INSERT [dbo].[ProductType] ([ProductTypeId], [Code], [Description]) VALUES (2, N'PROD2', N'Product2')
+GO
+SET IDENTITY_INSERT [dbo].[ProductType] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Unit] ON 
+GO
+INSERT [dbo].[Unit] ([UnitId], [Code], [Description]) VALUES (1, N'box', N'Box Unit')
+GO
+INSERT [dbo].[Unit] ([UnitId], [Code], [Description]) VALUES (2, N'kg', N'Kilograms')
+GO
+SET IDENTITY_INSERT [dbo].[Unit] OFF
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_ProductType] FOREIGN KEY([ProductTypeId])
+REFERENCES [dbo].[ProductType] ([ProductTypeId])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_ProductType]
+GO
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Unit] FOREIGN KEY([UnitId])
+REFERENCES [dbo].[Unit] ([UnitId])
+GO
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Unit]
+GO
+ALTER TABLE [dbo].[Product_Category]  WITH CHECK ADD  CONSTRAINT [FK_Product_Category_Category] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[Category] ([CategoryId])
+GO
+ALTER TABLE [dbo].[Product_Category] CHECK CONSTRAINT [FK_Product_Category_Category]
+GO
+ALTER TABLE [dbo].[Product_Category]  WITH CHECK ADD  CONSTRAINT [FK_Product_Category_Product] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Product] ([ProductId])
+GO
+ALTER TABLE [dbo].[Product_Category] CHECK CONSTRAINT [FK_Product_Category_Product]
+GO
+USE [master]
+GO
+ALTER DATABASE [SIENN] SET  READ_WRITE 
+GO
